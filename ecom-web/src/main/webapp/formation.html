@@ -1,0 +1,59 @@
+<meta charset="UTF-8">
+<div>
+	<table class="table">
+		<tr>
+			<th>Identifiant</th>
+			<th>Promotion</th>
+			<th>Date de début</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="formation in formationCtrl.formations">
+			<td>{{formation.id}}</td>
+			<td>{{formation.promotion}}</td>
+			<td>{{formation.dtDebut | date:'dd/MM/yyyy'}}</td>
+			<td><button class='btn btn-success btn-sm'
+					ng-click="formationCtrl.edit(formation.id)">
+					<span class='glyphicon glyphicon-pencil'></span>
+				</button></td>
+			<td><button class='btn btn-danger btn-sm'
+					ng-click="formationCtrl.remove(formation.id)">
+					<span class='glyphicon glyphicon-trash'></span>
+				</button></td>
+		</tr>
+		<tr>
+			<td colspan="5"><button class='btn btn-success btn-sm'
+					ng-click="formationCtrl.add()">
+					<span class='glyphicon glyphicon-plus'></span>
+				</button></td>
+		</tr>
+	</table>
+	
+	<div class="panel panel-default" style="margin-top: 20px"
+		ng-show="formationCtrl.formation">
+		<div class="panel-heading">Edition de la formation</div>
+		<div class="panel-body">
+			<form name="formationCtrl.formationForm"
+				ng-submit="formationCtrl.formationForm.$valid && formationCtrl.save()" novalidate>
+				<input type="hidden" ng-model="formationCtrl.formation.id" /> <input
+					type="hidden" ng-model="formationCtrl.formation.version" />
+				<div class="form-group">
+					<label for="promotion">Promotion</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="formationCtrl.formation.promotion" required />
+				</div>
+				<div class="form-group">
+					<label for="dtDebut">Date de début</label> <input type="date"
+						class="form-control" style="width: 400px"
+						ng-model="formationCtrl.formation.dtDebut" required/>
+				</div>
+				<button class="btn btn-success" type="submit">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+				<button class="btn btn-warning" ng-click="formationCtrl.cancel()">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>

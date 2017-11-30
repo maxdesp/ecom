@@ -1,0 +1,77 @@
+<meta charset="UTF-8">
+<div>
+	<table class="table">
+		<tr>
+			<th>Type</th>
+			<th>Code</th>
+			<th>Electrique</th>
+			<th>Poids</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="ressource in ressourceCtrl.ressources">
+			<td>{{ressource.id.type}}</td>
+			<td>{{ressource.id.code}}</td>
+			<td>{{ressource.electrique}}</td>
+			<td>{{ressource.poids}}</td>
+			<td><button class='btn btn-success btn-sm'
+					ng-click="ressourceCtrl.edit(ressource.id.type,ressource.id.code)">
+					<span class='glyphicon glyphicon-pencil'></span>
+				</button></td>
+			<td><button class='btn btn-danger btn-sm'
+					ng-click="ressourceCtrl.remove(ressource.id)">
+					<span class='glyphicon glyphicon-trash'></span>
+				</button></td>
+		</tr>
+		<tr>
+			<td colspan="5"><button class='btn btn-success btn-sm'
+					ng-click="ressourceCtrl.add()">
+					<span class='glyphicon glyphicon-plus'></span>
+				</button></td>
+		</tr>
+	</table>
+	
+	<div class="panel panel-default" style="margin-top: 20px"
+		ng-show="ressourceCtrl.ressource">
+		<div class="panel-heading">Edition de la ressource</div>
+		<div class="panel-body">
+			<form name="ressourceCtrl.ressourceForm"
+				ng-submit="ressourceCtrl.ressourceForm.$valid && ressourceCtrl.save()" novalidate>
+				<input type="hidden" ng-model="ressourceCtrl.ressource.version" />
+				<div class="form-group">
+					<label for="type">Type</label> 
+					<select class="form-control" style="width: 400px" ng-readonly="!ressourceCtrl.ajout"
+						ng-model="ressourceCtrl.ressource.id.type" required>
+						<option ng-repeat="type in ressourceCtrl.types" value="{{type}}">{{type}}</option>	
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="code">Code</label> <input type="text" ng-readonly="!ressourceCtrl.ajout"
+						class="form-control" style="width: 400px"
+						ng-model="ressourceCtrl.ressource.id.code" required />
+				</div>
+				<div class="form-group">
+					<label for="electrique">Electrique</label> 
+					<input type="radio" class="form-control" style="width: 400px" ng-model="ressourceCtrl.ressource.electrique" value="true"/>Oui&nbsp;
+					<input type="radio" class="form-control" style="width: 400px" ng-model="ressourceCtrl.ressource.electrique" value="false"/>Non
+				</div>
+				<div class="form-group">
+					<label for="poids">Poids</label> <input type="number"
+						class="form-control" style="width: 400px"
+						ng-model="ressourceCtrl.ressource.poids" />
+				</div>
+				<div class="form-group">
+					<label for="eleve">Elève</label> 
+					<select class="form-control" style="width: 400px" ng-model="ressourceCtrl.ressource.eleve.id" ng-options="eleve.id as eleve.nom for eleve in ressourceCtrl.eleves">
+					</select>
+				</div>
+				<button class="btn btn-success" type="submit">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+				<button class="btn btn-warning" ng-click="ressourceCtrl.cancel()">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>

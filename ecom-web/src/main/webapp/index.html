@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="formapp">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/app.css">
+<script type="text/javascript" src="lib/jquery.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap.min.js"></script>
+<script type="text/javascript" src="lib/angular.min.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/utilisateur.js"></script>
+<script type="text/javascript" src="js/client.js"></script>
+<script type="text/javascript" src="js/categorie.js"></script>
+
+<title>Formation</title>
+</head>
+<body>
+	<div class="container">
+<!-- 		<section ng-controller="SwitchController as switchCtrl">
+			<ul class="nav nav-pills">
+				<li ng-class="{active:switchCtrl.isOnglet('utilisateur')}"><a
+					ng-click="switchCtrl.setOnglet('utilisateur')">Utilisateurs</a></li>
+				<li ng-class="{active:switchCtrl.isOnglet('client')}"><a
+					ng-click="switchCtrl.setOnglet('client')">Client</a></li>
+				<li ng-class="{active:switchCtrl.isOnglet('categorie')}"><a
+					ng-click="switchCtrl.setOnglet('categorie')">Categorie</a></li>
+			</ul>
+
+			<utilisateur ng-show="switchCtrl.isOnglet('utilisateur')"></utilisateur>
+			<client ng-show="switchCtrl.isOnglet('client')"></client>
+			<categorie ng-show="switchCtrl.isOnglet('categorie'')"></categorie>
+
+			
+		</section>
+	</div> -->
+	
+			<section ng-controller="SwitchController as switchCtrl">
+			<ul class="nav nav-pills">
+				<li ng-class="{active:switchCtrl.isOnglet('utilisateur')}"><a
+					ng-click="switchCtrl.setOnglet('utilisateur')">Utilisateurs</a></li>
+				<li ng-class="{active:switchCtrl.isOnglet('client')}"><a
+					ng-click="switchCtrl.setOnglet('client')">Clients</a></li>
+				<li ng-class="{active:switchCtrl.isOnglet('categorie')}"><a
+					ng-click="switchCtrl.setOnglet('categorie')">Categories</a></li>
+	
+			</ul>
+
+			<utilisateur ng-show="switchCtrl.isOnglet('utilisateur')"></utilisateur>
+			<client ng-show="switchCtrl.isOnglet('client')"></client>
+			<categorie ng-show="switchCtrl.isOnglet('categorie')"></categorie>
+		
+			
+		</section>
+	</div>
+</body>
+</html>

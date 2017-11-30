@@ -1,0 +1,91 @@
+<meta charset="UTF-8">
+<div>
+	<table class="table">
+		<tr>
+			<th>Identifiant</th>
+			<th>Nom</th>
+			<th>Prenom</th>
+			<th>numero</th>
+			<th>courriel</th>
+			<th>telephone</th>
+			<th>login utilisateur</th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="client in clientCtrl.clients">
+			<td>{{client.id}}</td>
+			<td>{{client.nom}}</td>
+			<td>{{client.prenom}}</td>
+			<td>{{client.numero}}</td>
+			<td>{{client.courriel}}</td>
+			<td>{{client.telephone}}</td>
+			<td>{{client.utilisateur.login}}</td>	
+			<td><button class='btn btn-success btn-sm'
+					ng-click="clientCtrl.edit(client.id)">
+					<span class='glyphicon glyphicon-pencil'></span>
+				</button></td>
+			<td><button class='btn btn-danger btn-sm'
+					ng-click="clientCtrl.remove(client.id)">
+					<span class='glyphicon glyphicon-trash'></span>
+				</button></td>
+		</tr>
+		<tr>
+			<td colspan="7"><button class='btn btn-success btn-sm'
+					ng-click="clientCtrl.add()">
+					<span class='glyphicon glyphicon-plus'></span>
+				</button></td>
+		</tr>
+	</table>
+	
+	<div class="panel panel-default" style="margin-top: 20px"
+		ng-show="clientCtrl.client">
+		<div class="panel-heading">Edition de l'élève</div>
+		<div class="panel-body">
+			<form name="clientCtrl.clientForm"
+				ng-submit="clientCtrl.clientForm.$valid && clientCtrl.save()" novalidate>
+				<input type="hidden" ng-model="clientCtrl.client.version" />
+				<input type="hidden" ng-model="clientCtrl.client.id" />
+
+				<div class="form-group">
+					<label for="nom">nom</label> <input type="text" ng-readonly="!clientCtrl.ajout"
+						class="form-control" style="width: 400px"
+						ng-model="clientCtrl.client.nom" required />
+				</div>
+				<div class="form-group">
+					<label for="prenom">prenom</label> <input type="text" ng-readonly="!clientCtrl.ajout"
+						class="form-control" style="width: 400px"
+						ng-model="clientCtrl.client.prenom"  />
+				</div>
+				<div class="form-group">
+					<label for="numero">Numero client</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="formationCtrl.client.numero"/>
+				</div>
+				
+				<div class="form-group">
+					<label for="courriel">courriel</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="formationCtrl.client.courriel"/>
+				</div>
+				<div class="form-group">
+					<label for="courriel">telephone</label> <input type="text"
+						class="form-control" style="width: 400px"
+						ng-model="formationCtrl.client.telephone"/>
+				</div>
+
+				<div class="form-group">
+					<label for="Utilisateur">Utilisateur</label> 
+					<select class="form-control" style="width: 400px" ng-model="clientCtrl.client.utilisateur.id" ng-options="utilisateur.id as utilisateur.login for utilisateur in clientCtrl.utilisateurs">
+					</select>
+				</div>
+			
+				
+				<button class="btn btn-success" type="submit">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+				<button class="btn btn-warning" ng-click="clientCtrl.cancel()">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>

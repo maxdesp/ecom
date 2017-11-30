@@ -1,0 +1,70 @@
+<meta charset="UTF-8">
+<div>
+	<table class="table">
+		<tr>
+			<th>id</th>
+			<th>nom</th>
+			<th>description</th>
+
+			<th></th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="categorie in categorieCtrl.categories">
+			<td>{{categorie.id}}</td>
+			<td>{{categorie.nom}}</td>
+			<td>{{categorie.description}}</td>
+
+			<td><button class='btn btn-success btn-sm'
+					ng-click="categorieCtrl.edit(categorie.id)">
+					<span class='glyphicon glyphicon-pencil'></span>
+				</button></td>
+			<td><button class='btn btn-danger btn-sm'
+					ng-click="categorieCtrl.remove(categorie.id)">
+					<span class='glyphicon glyphicon-trash'></span>
+				</button></td>
+		</tr>
+		<tr>
+			<td colspan="7"><button class='btn btn-success btn-sm'
+					ng-click="categorieCtrl.add()">
+					<span class='glyphicon glyphicon-plus'></span>
+				</button></td>
+		</tr>
+	</table>
+ 
+	<div class="panel panel-default" style="margin-top: 20px"
+		ng-show="categorieCtrl.categorie">
+		<div class="panel-heading">Edition de l'élève</div>
+		<div class="panel-body">
+			<form name="categorieCtrl.categorieForm"
+				ng-submit="categorieCtrl.categorieForm.$valid && categorieCtrl.save()" novalidate>
+				<input type="hidden" ng-model="categorieCtrl.categorie.version" />
+				<input type="hidden" ng-model="categorieCtrl.categorie.id" />
+
+				<div class="form-group">
+					<label for="nom">Nom</label> <input type="text" ng-readonly="!categorieCtrl.ajout"
+						class="form-control" style="width: 400px"
+						ng-model="categorieCtrl.categorie.nom" required />
+				</div>
+				<div class="form-group">
+					<label for="code">Description</label> <input type="text" ng-readonly="!categorieCtrl.ajout"
+						class="form-control" style="width: 400px"
+						ng-model="categorieCtrl.categorie.description" required />
+				</div>
+				<div class="form-group">
+					<label for="code">mot de passe</label> <input type="file" ng-readonly="!categorieCtrl.ajout"
+						class="form-control" style="width: 400px"
+						ng-model="categorieCtrl.categorie.photo" />
+				</div>
+
+
+				
+				<button class="btn btn-success" type="submit">
+					<span class="glyphicon glyphicon-ok"></span>
+				</button>
+				<button class="btn btn-warning" ng-click="categorieCtrl.cancel()">
+					<span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+			</form>
+		</div>
+	</div>
+</div>
